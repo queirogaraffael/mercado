@@ -17,8 +17,8 @@ public class ProdutoService {
 
 
     @Transactional
-    public void insert(Produto produto){
-        produtoRepository.save(produto);
+    public Produto insert(Produto produto){
+        return produtoRepository.save(produto);
     }
 
 
@@ -29,9 +29,9 @@ public class ProdutoService {
 
 
     @Transactional(readOnly = true)
-    public Produto findById(Long id){
+    public Optional<Produto> findById(Long id){
         Optional<Produto> produto = produtoRepository.findById(id);
-        return produto.orElse(null);
+        return produto;
     }
 
 

@@ -1,0 +1,101 @@
+2024-07-04T19:58:00.242-03:00  INFO 27664 --- [mercado] [main] c.unifacisa.mercado.MercadoApplication   : Starting MercadoApplication using Java 17.0.11 with PID 27664 (C:\Users\raffa\Downloads\mercado\target\classes started by raffa in C:\Users\raffa\Downloads\mercado)
+2024-07-04T19:58:00.249-03:00  INFO 27664 --- [mercado] [main] c.unifacisa.mercado.MercadoApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-07-04T19:58:01.815-03:00  INFO 27664 --- [mercado] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-04T19:58:02.023-03:00  INFO 27664 --- [mercado] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 163 ms. Found 1 JPA repository interface.
+2024-07-04T19:58:03.409-03:00  INFO 27664 --- [mercado] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-04T19:58:03.431-03:00  INFO 27664 --- [mercado] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-04T19:58:03.431-03:00  INFO 27664 --- [mercado] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-04T19:58:03.568-03:00  INFO 27664 --- [mercado] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-04T19:58:03.569-03:00  INFO 27664 --- [mercado] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3192 ms
+2024-07-04T19:58:04.054-03:00  INFO 27664 --- [mercado] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-04T19:58:04.173-03:00  INFO 27664 --- [mercado] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-07-04T19:58:04.238-03:00  INFO 27664 --- [mercado] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-07-04T19:58:04.785-03:00  INFO 27664 --- [mercado] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-04T19:58:04.846-03:00  INFO 27664 --- [mercado] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-04T19:58:05.320-03:00  INFO 27664 --- [mercado] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@156cfa20
+2024-07-04T19:58:05.323-03:00  INFO 27664 --- [mercado] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-04T19:58:05.421-03:00  WARN 27664 --- [mercado] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-07-04T19:58:07.167-03:00  INFO 27664 --- [mercado] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-04T19:58:07.227-03:00  INFO 27664 --- [mercado] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-04T19:58:07.789-03:00  WARN 27664 --- [mercado] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-04T19:58:07.966-03:00 DEBUG 27664 --- [mercado] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2024-07-04T19:58:08.138-03:00 DEBUG 27664 --- [mercado] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-07-04T19:58:08.221-03:00 DEBUG 27664 --- [mercado] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-07-04T19:58:08.291-03:00 DEBUG 27664 --- [mercado] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-07-04T19:58:08.499-03:00  INFO 27664 --- [mercado] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-04T19:58:08.514-03:00  INFO 27664 --- [mercado] [main] c.unifacisa.mercado.MercadoApplication   : Started MercadoApplication in 9.014 seconds (process running for 9.624)
+2024-07-04T19:58:18.122-03:00  INFO 27664 --- [mercado] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-04T19:58:18.123-03:00  INFO 27664 --- [mercado] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-04T19:58:18.123-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-07-04T19:58:18.123-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-07-04T19:58:18.123-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-07-04T19:58:18.125-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4fc84c92
+2024-07-04T19:58:18.126-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@32430075
+2024-07-04T19:58:18.127-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-07-04T19:58:18.127-03:00  INFO 27664 --- [mercado] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2024-07-04T19:58:18.139-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : PUT "/produtos/3", parameters={}
+2024-07-04T19:58:18.157-03:00  WARN 27664 --- [mercado] [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2024-07-04T19:58:18.158-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 405 METHOD_NOT_ALLOWED
+2024-07-04T19:58:18.168-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for PUT "/error", parameters={}
+2024-07-04T19:58:18.181-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2024-07-04T19:58:18.233-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-07-04T19:58:18.235-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Thu Jul 04 19:58:18 BRT 2024, status=405, error=Method Not Allowed, path=/produtos/3}]
+2024-07-04T19:58:18.311-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 405
+2024-07-04T20:01:34.032-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2024-07-04T20:01:34.036-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-07-04T20:01:34.038-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-4] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-07-04T20:01:34.040-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource .]
+2024-07-04T20:01:34.040-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-07-04T20:01:34.041-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-07-04T20:01:34.042-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-07-04T20:01:34.061-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-4] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-07-04T20:01:34.067-03:00 DEBUG 27664 --- [mercado] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-07-04T20:02:26.347-03:00  INFO 27664 --- [mercado] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-04T20:02:26.350-03:00  INFO 27664 --- [mercado] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-04T20:02:26.362-03:00  INFO 27664 --- [mercado] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-04T20:02:31.968-03:00  INFO 28192 --- [mercado] [main] c.unifacisa.mercado.MercadoApplication   : Starting MercadoApplication using Java 17.0.11 with PID 28192 (C:\Users\raffa\Downloads\mercado\target\classes started by raffa in C:\Users\raffa\Downloads\mercado)
+2024-07-04T20:02:31.975-03:00  INFO 28192 --- [mercado] [main] c.unifacisa.mercado.MercadoApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-07-04T20:02:33.219-03:00  INFO 28192 --- [mercado] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-04T20:02:33.332-03:00  INFO 28192 --- [mercado] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 88 ms. Found 1 JPA repository interface.
+2024-07-04T20:02:34.428-03:00  INFO 28192 --- [mercado] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-04T20:02:34.447-03:00  INFO 28192 --- [mercado] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-04T20:02:34.448-03:00  INFO 28192 --- [mercado] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-04T20:02:34.566-03:00  INFO 28192 --- [mercado] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-04T20:02:34.566-03:00  INFO 28192 --- [mercado] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2509 ms
+2024-07-04T20:02:34.896-03:00  INFO 28192 --- [mercado] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-04T20:02:35.007-03:00  INFO 28192 --- [mercado] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-07-04T20:02:35.075-03:00  INFO 28192 --- [mercado] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-07-04T20:02:35.564-03:00  INFO 28192 --- [mercado] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-04T20:02:35.622-03:00  INFO 28192 --- [mercado] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-04T20:02:36.081-03:00  INFO 28192 --- [mercado] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4948daec
+2024-07-04T20:02:36.083-03:00  INFO 28192 --- [mercado] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-04T20:02:36.140-03:00  WARN 28192 --- [mercado] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-07-04T20:02:37.400-03:00  INFO 28192 --- [mercado] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-04T20:02:37.464-03:00  INFO 28192 --- [mercado] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-04T20:02:38.027-03:00  WARN 28192 --- [mercado] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-04T20:02:38.192-03:00 DEBUG 28192 --- [mercado] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2024-07-04T20:02:38.358-03:00 DEBUG 28192 --- [mercado] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-07-04T20:02:38.415-03:00 DEBUG 28192 --- [mercado] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-07-04T20:02:38.476-03:00 DEBUG 28192 --- [mercado] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-07-04T20:02:38.698-03:00  INFO 28192 --- [mercado] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-04T20:02:38.711-03:00  INFO 28192 --- [mercado] [main] c.unifacisa.mercado.MercadoApplication   : Started MercadoApplication in 7.502 seconds (process running for 8.336)
+2024-07-04T20:02:47.534-03:00  INFO 28192 --- [mercado] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-04T20:02:47.535-03:00  INFO 28192 --- [mercado] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-04T20:02:47.536-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-07-04T20:02:47.536-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-07-04T20:02:47.536-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-07-04T20:02:47.538-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@7c3223aa
+2024-07-04T20:02:47.539-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@1d9bd4d6
+2024-07-04T20:02:47.540-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-07-04T20:02:47.540-03:00  INFO 28192 --- [mercado] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2024-07-04T20:02:47.559-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : PUT "/produtos/3", parameters={}
+2024-07-04T20:02:47.582-03:00  WARN 28192 --- [mercado] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2024-07-04T20:02:47.584-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 405 METHOD_NOT_ALLOWED
+2024-07-04T20:02:47.594-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for PUT "/error", parameters={}
+2024-07-04T20:02:47.609-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2024-07-04T20:02:47.678-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-07-04T20:02:47.681-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Thu Jul 04 20:02:47 BRT 2024, status=405, error=Method Not Allowed, path=/produtos/3}]
+2024-07-04T20:02:47.744-03:00 DEBUG 28192 --- [mercado] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 405
+2024-07-04T20:05:35.546-03:00  INFO 28192 --- [mercado] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-04T20:05:35.550-03:00  INFO 28192 --- [mercado] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-04T20:05:35.565-03:00  INFO 28192 --- [mercado] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
