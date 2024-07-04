@@ -1,4 +1,7 @@
 package com.unifacisa.mercado.repositories;
 
-public class ProdutoRepository {
+import com.unifacisa.mercado.entities.Produto;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 }
