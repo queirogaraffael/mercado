@@ -59,7 +59,6 @@ public class ProdutoResource {
     }
 
 
-
     @Operation(summary = "Modifica produto pelo ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Produto atualizado com sucesso."),
