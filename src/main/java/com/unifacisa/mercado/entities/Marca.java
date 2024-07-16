@@ -8,13 +8,16 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Produto implements Serializable {
+public class Marca implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +25,8 @@ public class Produto implements Serializable {
     private Long id;
 
     private String nome;
-    private String valor;
 
-
-    @ManyToOne
-    @JoinColumn(name = "marca_id")
-    private Marca marca;
-
+    @OneToMany(mappedBy = "marca")
+    @JsonIgnore
+    private Set<Produto> produtos = new HashSet<>();
 }

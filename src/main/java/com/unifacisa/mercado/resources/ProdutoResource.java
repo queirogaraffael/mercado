@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class ProdutoResource {
     ProdutoService produtoService;
 
 
-    @Operation(summary = "insere produto")
+    @Operation(summary = "insere produto", description = "Marca deve já estar registrada")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Produto criado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Requisição inválida")
@@ -33,12 +34,13 @@ public class ProdutoResource {
     }
 
 
-    @Operation(summary = "Busca todos os produtos")
-    @ApiResponse(responseCode = "200", description = "Retorna a lista de produtos")
+    @Operation(summary = "Busca paginada de produtos")
+    @ApiResponse(responseCode = "200", description = "Retorna produtos de uma pagina")
     @GetMapping
-    public ResponseEntity<List<Produto>> listaTodosOsProdutos(){
-        List<Produto> produtos = produtoService.findAll();
-        return ResponseEntity.ok(produtos);
+    public Page<Produto> buscaProdutosPaginados(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size){
+        return produtoService.getProdutosPaginados(page, size);
     }
 
 
@@ -49,13 +51,10 @@ public class ProdutoResource {
     })
     @GetMapping("/{id}")
     public ResponseEntity<Produto> retornaProdutoPeloId(@PathVariable Long id){
-        Optional<Produto> optionalProduto = produtoService.findById(id);
+        Produto produto = produtoService.findById(id);
 
-        if(optionalProduto.isPresent()){
-            return ResponseEntity.ok(optionalProduto.get());
-        }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        return ResponseEntity.ok(produto);
+
     }
 
 
@@ -68,11 +67,8 @@ public class ProdutoResource {
     public ResponseEntity<Produto> atualizaProduto(@PathVariable Long id, @RequestBody Produto produtoAtualizado){
         Produto produto = produtoService.update(id, produtoAtualizado);
 
-        if(produto==null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }else{
-            return ResponseEntity.ok(produto);
-        }
+        return ResponseEntity.ok(produto);
+
     }
 
 
