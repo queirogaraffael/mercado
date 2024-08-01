@@ -4,6 +4,9 @@ import com.unifacisa.mercado.entities.Produto;
 import com.unifacisa.mercado.exceptions.ResourceNotFoundException;
 import com.unifacisa.mercado.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +35,7 @@ public class ProdutoService {
 
 
     @Transactional(readOnly = true)
+    @Cacheable(value = "produtosCache", key = "#id")
     public Produto findById(Long id){
         return produtoRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Produto não encontrado"));
 
@@ -39,6 +43,7 @@ public class ProdutoService {
 
 
     @Transactional
+    @CachePut(value = "produtosCache", key = "#result.id")
     public Produto update(Long id , Produto produtoAtualizado){
         Produto produto = produtoRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Produto não encontrado"));
 
@@ -52,6 +57,7 @@ public class ProdutoService {
 
 
     @Transactional
+    @CacheEvict(value = "produtosCache", key = "#id")
     public void deleteById(Long id){
         produtoRepository.deleteById(id);
     }
