@@ -1,4 +1,4 @@
-package com.unifacisa.mercado.config;
+package com.example.mercado.config;
 
 
 import com.github.benmanes.caffeine.cache.Caffeine;

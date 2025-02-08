@@ -1,16 +1,18 @@
-package com.unifacisa.mercado.resources;
+package com.example.mercado.resources;
 
-import com.unifacisa.mercado.entities.Marca;
-import com.unifacisa.mercado.services.MarcaService;
+import com.example.mercado.services.MarcaService;
+import com.example.mercado.entities.marca.Marca;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "4. Marcas", description = "Gerenciamento de marcas")
 @RestController
 @RequestMapping("/marcas")
 public class MarcaResource {

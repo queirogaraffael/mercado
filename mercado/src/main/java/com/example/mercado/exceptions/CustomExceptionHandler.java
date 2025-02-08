@@ -1,4 +1,4 @@
-package com.unifacisa.mercado.exceptions;
+package com.example.mercado.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

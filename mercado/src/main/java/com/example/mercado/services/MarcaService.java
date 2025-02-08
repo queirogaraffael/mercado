@@ -1,10 +1,10 @@
-package com.unifacisa.mercado.services;
+package com.example.mercado.services;
 
-import com.unifacisa.mercado.entities.Marca;
-import com.unifacisa.mercado.entities.Produto;
-import com.unifacisa.mercado.exceptions.ResourceNotFoundException;
-import com.unifacisa.mercado.repositories.MarcaRepository;
-import com.unifacisa.mercado.repositories.ProdutoRepository;
+import com.example.mercado.entities.produto.Produto;
+import com.example.mercado.exceptions.ResourceNotFoundException;
+import com.example.mercado.repositories.MarcaRepository;
+import com.example.mercado.entities.marca.Marca;
+import com.example.mercado.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;

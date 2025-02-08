@@ -1,6 +1,6 @@
-package com.unifacisa.mercado.repositories;
+package com.example.mercado.repositories;
 
-import com.unifacisa.mercado.entities.Marca;
+import com.example.mercado.entities.marca.Marca;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

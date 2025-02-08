@@ -1,8 +1,8 @@
-package com.unifacisa.mercado.services;
+package com.example.mercado.services;
 
-import com.unifacisa.mercado.entities.Produto;
-import com.unifacisa.mercado.exceptions.ResourceNotFoundException;
-import com.unifacisa.mercado.repositories.ProdutoRepository;
+import com.example.mercado.entities.produto.Produto;
+import com.example.mercado.exceptions.ResourceNotFoundException;
+import com.example.mercado.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -19,7 +19,6 @@ public class ProdutoService {
 
     @Autowired
     ProdutoRepository produtoRepository;
-
 
     @Transactional
     public Produto insert(Produto produto){

@@ -1,4 +1,4 @@
-package com.unifacisa.mercado.exceptions;
+package com.example.mercado.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException{
     private static final long serialVersionUID = 1L;

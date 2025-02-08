@@ -1,19 +1,18 @@
-package com.unifacisa.mercado.resources;
+package com.example.mercado.resources;
 
-import com.unifacisa.mercado.entities.Produto;
-import com.unifacisa.mercado.services.ProdutoService;
+import com.example.mercado.entities.produto.Produto;
+import com.example.mercado.services.ProdutoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-
+@Tag(name = "3. Produtos", description = "Gerenciamento de produtos")
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoResource {

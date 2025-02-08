@@ -2,7 +2,7 @@ FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-COPY target/mercado-0.0.1-SNAPSHOT.jar /app/mercado.jar
+COPY mercado/target/mercado-0.0.1-SNAPSHOT.jar /app/mercado.jar
 
 EXPOSE 8080
 

@@ -1,6 +1,6 @@
-package com.unifacisa.mercado.entities;
+package com.example.mercado.entities.produto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.mercado.entities.marca.Marca;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
