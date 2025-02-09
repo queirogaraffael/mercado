@@ -26,7 +26,7 @@ public class UserResource {
     @Autowired
     private UserRepository userRepository;
 
-    @Operation(summary = "Cadastra Usuário")
+    @Operation(summary = "Criar usuário", description = "Registra um novo usuário.", security = {})
     @PostMapping()
     public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
         if (this.userService.loadUserByUsername(data.login()) != null)

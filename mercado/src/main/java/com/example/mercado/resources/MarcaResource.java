@@ -5,6 +5,7 @@ import com.example.mercado.entities.marca.Marca;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,6 +28,7 @@ public class MarcaResource {
             @ApiResponse(responseCode = "400", description = "Requisição inválida")
     })
     @PostMapping
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Marca> criaMarca(@RequestBody Marca marca){
         Marca marcaCriada = marcaService.adicionaMarca(marca);
         return ResponseEntity.status(HttpStatus.CREATED).body(marcaCriada);
@@ -61,6 +63,7 @@ public class MarcaResource {
             @ApiResponse(responseCode = "404", description = "Marca com ID não encontrado.")
     })
     @PutMapping("/{id}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Marca> atualizaMarca(@PathVariable Long id, @RequestBody Marca marca){
         Marca marcaAtualizada = marcaService.atualizaMarca(id, marca);
         return ResponseEntity.ok(marcaAtualizada);
@@ -69,6 +72,7 @@ public class MarcaResource {
     @Operation(summary = "Deleta marca pelo id", description = "Se deletar a marca, os produtos ficarão com marca nula")
     @ApiResponse(responseCode = "204", description = "Marca deletada com sucesso")
     @DeleteMapping("/{id}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Void> deletaMarcaById(@PathVariable Long id){
         marcaService.deletaMarcaById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

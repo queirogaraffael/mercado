@@ -6,6 +6,7 @@ import com.example.mercado.entities.user.User;
 import com.example.mercado.infra.security.TokenService;
 import com.example.mercado.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class LoginResource {
     @Autowired
     private TokenService tokenService;
 
-    @Operation(summary = "Realizar Login")
+    @Operation(summary = "Autenticar usuário", description = "Gera token JWT para autenticação.")
     @PostMapping()
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());

@@ -5,6 +5,7 @@ import com.example.mercado.services.ProdutoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,13 +21,13 @@ public class ProdutoResource {
     @Autowired
     ProdutoService produtoService;
 
-
     @Operation(summary = "insere produto", description = "Marca deve já estar registrada")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Produto criado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Requisição inválida")
     })
     @PostMapping
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Produto> insereProduto(@RequestBody Produto produto){
         Produto produtoAdicionado = produtoService.insert(produto);
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoAdicionado);
@@ -63,6 +64,7 @@ public class ProdutoResource {
             @ApiResponse(responseCode = "404", description = "Produto com ID não encontrado.")
     })
     @PutMapping("/{id}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Produto> atualizaProduto(@PathVariable Long id, @RequestBody Produto produtoAtualizado){
         Produto produto = produtoService.update(id, produtoAtualizado);
 
@@ -70,10 +72,10 @@ public class ProdutoResource {
 
     }
 
-
     @Operation(summary = "Deleta produto pelo id")
     @ApiResponse(responseCode = "204", description = "Produto deletado com sucesso")
     @DeleteMapping("/{id}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Void> deletarProdutoPeloId(@PathVariable Long id){
         produtoService.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
