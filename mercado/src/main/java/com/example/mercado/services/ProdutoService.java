@@ -1,6 +1,7 @@
 package com.example.mercado.services;
 
 import com.example.mercado.entities.marca.Marca;
+import com.example.mercado.entities.marca.MarcaResponseDTO;
 import com.example.mercado.entities.produto.Produto;
 import com.example.mercado.entities.produto.ProdutoCreateDTO;
 import com.example.mercado.entities.produto.ProdutoResponseDTO;
@@ -65,6 +66,20 @@ public class ProdutoService {
         Produto produto = produtoRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Produto não encontrado"));
 
         return toProdutoResponseDTO(produto);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<ProdutoResponseDTO> getProdutosByNomeContaining(String nome, int page, int size){
+        Pageable pageable = PageRequest.of(page, size);
+
+        Page<Produto> produtoPage = produtoRepository.findByNomeContaining(nome, pageable);
+
+        return produtoPage.map(produto -> new ProdutoResponseDTO(
+                produto.getId(),
+                produto.getNome(),
+                produto.getValor(),
+                produto.getMarca().getId()
+        ));
     }
 
     @Transactional

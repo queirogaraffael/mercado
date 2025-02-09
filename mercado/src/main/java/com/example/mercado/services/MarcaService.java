@@ -59,12 +59,22 @@ public class MarcaService {
     }
 
 
-    // pega por nome
     @Transactional(readOnly = true)
     public MarcaResponseDTO getMarcaByNome(String nome){
         Marca marca = marcaRepository.findByNome(nome).orElseThrow(()-> new ResourceNotFoundException("Marca não encontrada "));
         return toMarcaResponseDTO(marca);
     }
+
+
+    @Transactional(readOnly = true)
+    public Page<MarcaResponseDTO> getMarcaByNomeContaining(String nome, int page, int size){
+        Pageable pageable = PageRequest.of(page, size);
+
+        Page<Marca> marcaPage = marcaRepository.findByNomeContaining(nome, pageable);
+
+        return marcaPage.map(marca -> new MarcaResponseDTO(marca.getId(), marca.getNome()));
+    }
+
 
     @Transactional
     @CachePut(value = "marcasCache", key = "#result.id")

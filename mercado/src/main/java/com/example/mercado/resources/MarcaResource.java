@@ -59,7 +59,24 @@ public class MarcaResource {
     }
 
 
-    // find by nome
+    @Operation(summary = "Busca marca pelo nome")
+    @ApiResponse(responseCode = "200", description = "Retorna a marca")
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity<MarcaResponseDTO> buscaMarcaPorNome(@PathVariable String nome){
+        MarcaResponseDTO marca = marcaService.getMarcaByNome(nome);
+        return ResponseEntity.ok(marca);
+    }
+
+
+    @Operation(summary = "Busca marcas pelo nome contendo")
+    @ApiResponse(responseCode = "200", description = "Retorna marcas")
+    @GetMapping("/nome/contendo/{nome}")
+    public Page<MarcaResponseDTO> buscaMarcaPorNomeContendo(
+            @PathVariable String nome,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size){
+        return marcaService.getMarcaByNomeContaining(nome, page, size);
+    }
 
 
     @Operation(summary = "Modifica marca pelo ID")
@@ -73,6 +90,7 @@ public class MarcaResource {
         MarcaResponseDTO marcaAtualizada = marcaService.atualizaMarca(id, marca);
         return ResponseEntity.ok(marcaAtualizada);
     }
+
 
     @Operation(summary = "Deleta marca pelo id", description = "Se deletar a marca, os produtos ficarão com marca nula")
     @ApiResponse(responseCode = "204", description = "Marca deletada com sucesso")

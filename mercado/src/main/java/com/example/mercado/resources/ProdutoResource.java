@@ -1,5 +1,6 @@
 package com.example.mercado.resources;
 
+import com.example.mercado.entities.marca.MarcaResponseDTO;
 import com.example.mercado.entities.produto.Produto;
 import com.example.mercado.entities.produto.ProdutoCreateDTO;
 import com.example.mercado.entities.produto.ProdutoResponseDTO;
@@ -62,6 +63,17 @@ public class ProdutoResource {
     }
 
 
+    @Operation(summary = "Busca produtos pelo nome contendo")
+    @ApiResponse(responseCode = "200", description = "Retorna produtos com nome contendo")
+    @GetMapping("/nome/contendo/{nome}")
+    public Page<ProdutoResponseDTO> buscaProdutoPorNomeContendo(
+            @PathVariable String nome,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size){
+        return produtoService.getProdutosByNomeContaining(nome, page, size);
+    }
+
+
     @Operation(summary = "Modifica produto pelo ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Produto atualizado com sucesso."),
@@ -75,6 +87,7 @@ public class ProdutoResource {
         return ResponseEntity.ok(produto);
 
     }
+
 
     @Operation(summary = "Deleta produto pelo id")
     @ApiResponse(responseCode = "204", description = "Produto deletado com sucesso")
