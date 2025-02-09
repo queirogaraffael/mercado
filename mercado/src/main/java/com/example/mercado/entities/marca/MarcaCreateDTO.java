@@ -1,4 +1,4 @@
 package com.example.mercado.entities.marca;
 
-public record MarcaCreateDTO(Long idMarca, String nome) {
+public record MarcaCreateDTO(String nome) {
 }

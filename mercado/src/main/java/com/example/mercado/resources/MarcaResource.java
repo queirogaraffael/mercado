@@ -1,7 +1,9 @@
 package com.example.mercado.resources;
 
+import com.example.mercado.entities.marca.MarcaCreateDTO;
+import com.example.mercado.entities.marca.MarcaResponseDTO;
+import com.example.mercado.entities.marca.MarcaUpdateDTO;
 import com.example.mercado.services.MarcaService;
-import com.example.mercado.entities.marca.Marca;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -29,8 +31,8 @@ public class MarcaResource {
     })
     @PostMapping
     @SecurityRequirement(name = "Bearer Authentication")
-    public ResponseEntity<Marca> criaMarca(@RequestBody Marca marca){
-        Marca marcaCriada = marcaService.adicionaMarca(marca);
+    public ResponseEntity<MarcaResponseDTO> criaMarca(@RequestBody MarcaCreateDTO marcaCreateDTO){
+        MarcaResponseDTO marcaCriada = marcaService.adicionaMarca(marcaCreateDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(marcaCriada);
     }
 
@@ -38,7 +40,7 @@ public class MarcaResource {
     @Operation(summary = "Busca paginada de marcas")
     @ApiResponse(responseCode = "200", description = "Retorna marcas de uma pagina")
     @GetMapping
-    public Page<Marca> buscaMarcasPaginadas(
+    public Page<MarcaResponseDTO> buscaMarcasPaginadas(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size){
         return marcaService.getMarcasPaginadas(page, size);
@@ -51,10 +53,13 @@ public class MarcaResource {
             @ApiResponse(responseCode = "404", description = "Não existe marca com este ID")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Marca> buscaMarcaPorId(@PathVariable Long id){
-        Marca marca = marcaService.getMarcaById(id);
+    public ResponseEntity<MarcaResponseDTO> buscaMarcaPorId(@PathVariable Long id){
+        MarcaResponseDTO marca = marcaService.getMarcaById(id);
         return ResponseEntity.ok(marca);
     }
+
+
+    // find by nome
 
 
     @Operation(summary = "Modifica marca pelo ID")
@@ -64,8 +69,8 @@ public class MarcaResource {
     })
     @PutMapping("/{id}")
     @SecurityRequirement(name = "Bearer Authentication")
-    public ResponseEntity<Marca> atualizaMarca(@PathVariable Long id, @RequestBody Marca marca){
-        Marca marcaAtualizada = marcaService.atualizaMarca(id, marca);
+    public ResponseEntity<MarcaResponseDTO> atualizaMarca(@PathVariable Long id, @RequestBody MarcaUpdateDTO marca){
+        MarcaResponseDTO marcaAtualizada = marcaService.atualizaMarca(id, marca);
         return ResponseEntity.ok(marcaAtualizada);
     }
 

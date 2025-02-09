@@ -1,6 +1,10 @@
 package com.example.mercado.services;
 
+import com.example.mercado.entities.marca.MarcaCreateDTO;
+import com.example.mercado.entities.marca.MarcaResponseDTO;
+import com.example.mercado.entities.marca.MarcaUpdateDTO;
 import com.example.mercado.entities.produto.Produto;
+import com.example.mercado.entities.produto.ProdutoResponseDTO;
 import com.example.mercado.exceptions.ResourceNotFoundException;
 import com.example.mercado.repositories.MarcaRepository;
 import com.example.mercado.entities.marca.Marca;
@@ -25,31 +29,53 @@ public class MarcaService {
     ProdutoRepository produtoRepository;
 
     @Transactional
-    public Marca adicionaMarca(Marca marca){
-        return marcaRepository.save(marca);
+    public MarcaResponseDTO adicionaMarca(MarcaCreateDTO marcaCreateDTO){
+        Marca marca = new Marca();
+
+        marca.setNome(marcaCreateDTO.nome());
+
+        Marca marcaCriada = marcaRepository.save(marca);
+
+        return toMarcaResponseDTO(marcaCriada);
     }
 
 
     @Transactional(readOnly = true)
-    public Page<Marca> getMarcasPaginadas(int page, int size){
+    public Page<MarcaResponseDTO> getMarcasPaginadas(int page, int size){
         Pageable pageable = PageRequest.of(page, size);
-        return marcaRepository.findAll(pageable);
+
+        Page<Marca> marcaPage = marcaRepository.findAll(pageable);
+
+        return marcaPage.map(marca -> new MarcaResponseDTO(marca.getId(), marca.getNome()));
     }
 
 
     @Transactional(readOnly = true)
     @Cacheable(value = "marcasCache", key = "#id")
-    public Marca getMarcaById(Long id){
-        return marcaRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Marca não encontrada"));
+    public MarcaResponseDTO getMarcaById(Long id){
+        Marca marca = marcaRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Marca não encontrada"));
+
+        return toMarcaResponseDTO(marca);
     }
 
 
+    // pega por nome
+    @Transactional(readOnly = true)
+    public MarcaResponseDTO getMarcaByNome(String nome){
+        Marca marca = marcaRepository.findByNome(nome).orElseThrow(()-> new ResourceNotFoundException("Marca não encontrada "));
+        return toMarcaResponseDTO(marca);
+    }
+
     @Transactional
     @CachePut(value = "marcasCache", key = "#result.id")
-    public Marca atualizaMarca(Long id, Marca marcaAtualizada){
+    public MarcaResponseDTO atualizaMarca(Long id, MarcaUpdateDTO marcaAtualizada){
         Marca marca = marcaRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Marca não encontrada"));
-        marca.setNome(marcaAtualizada.getNome());
-        return marcaRepository.save(marca);
+
+        marca.setNome(marcaAtualizada.nome());
+
+        Marca marcaModificada = marcaRepository.save(marca);
+
+        return toMarcaResponseDTO(marcaModificada);
     }
 
 
@@ -64,6 +90,13 @@ public class MarcaService {
        }
 
         marcaRepository.deleteById(id);
+    }
+
+    private MarcaResponseDTO toMarcaResponseDTO(Marca marca) {
+        return new MarcaResponseDTO(
+                marca.getId(),
+                marca.getNome()
+        );
     }
 
 }
