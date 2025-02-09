@@ -1,7 +1,12 @@
 package com.example.mercado.services;
 
+import com.example.mercado.entities.marca.Marca;
 import com.example.mercado.entities.produto.Produto;
+import com.example.mercado.entities.produto.ProdutoCreateDTO;
+import com.example.mercado.entities.produto.ProdutoResponseDTO;
+import com.example.mercado.entities.produto.ProdutoUpdateDTO;
 import com.example.mercado.exceptions.ResourceNotFoundException;
+import com.example.mercado.repositories.MarcaRepository;
 import com.example.mercado.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -20,38 +25,63 @@ public class ProdutoService {
     @Autowired
     ProdutoRepository produtoRepository;
 
+    @Autowired
+    MarcaRepository marcaRepository;
+
     @Transactional
-    public Produto insert(Produto produto){
-        return produtoRepository.save(produto);
+    public ProdutoResponseDTO insert(ProdutoCreateDTO produtoCreateDTO){
+        Produto produto = new Produto();
+
+        produto.setNome(produtoCreateDTO.nome());
+        produto.setValor(produtoCreateDTO.valor());
+
+        Marca marca = marcaRepository.findById(produtoCreateDTO.idMarca()).orElseThrow(()-> new ResourceNotFoundException("Marca não encontrada"));
+
+        produto.setMarca(marca);
+
+        Produto produtoSalvo = produtoRepository.save(produto);
+
+        return toProdutoResponseDTO(produto);
     }
 
 
     @Transactional(readOnly = true)
-    public Page<Produto> getProdutosPaginados(int page, int size){
+    public Page<ProdutoResponseDTO> getProdutosPaginados(int page, int size){
         Pageable pageable = PageRequest.of(page, size);
-        return produtoRepository.findAll(pageable);
-    }
 
+        Page<Produto> produtosPage = produtoRepository.findAll(pageable);
+
+        return produtosPage.map(produto -> new ProdutoResponseDTO(
+                produto.getId(),
+                produto.getNome(),
+                produto.getValor(),
+                produto.getMarca().getId()
+        ));
+    }
 
     @Transactional(readOnly = true)
     @Cacheable(value = "produtosCache", key = "#id")
-    public Produto findById(Long id){
-        return produtoRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Produto não encontrado"));
+    public ProdutoResponseDTO findById(Long id){
+        Produto produto = produtoRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Produto não encontrado"));
 
+        return toProdutoResponseDTO(produto);
     }
-
 
     @Transactional
     @CachePut(value = "produtosCache", key = "#result.id")
-    public Produto update(Long id , Produto produtoAtualizado){
+    public ProdutoResponseDTO update(Long id , ProdutoUpdateDTO produtoAtualizado){
         Produto produto = produtoRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Produto não encontrado"));
 
-        produto.setNome(produtoAtualizado.getNome());
-        produto.setValor(produtoAtualizado.getValor());
-        produto.setMarca(produtoAtualizado.getMarca());
+        produto.setNome(produtoAtualizado.nome());
+        produto.setValor(produtoAtualizado.valor());
 
-        return produtoRepository.save(produto);
+        Marca marca = marcaRepository.findById(produtoAtualizado.idMarca()).orElseThrow(()-> new ResourceNotFoundException("Marca não encontrada"));
 
+        produto.setMarca(marca);
+
+        Produto produtoModificado = produtoRepository.save(produto);
+
+        return toProdutoResponseDTO(produtoModificado);
     }
 
 
@@ -59,6 +89,16 @@ public class ProdutoService {
     @CacheEvict(value = "produtosCache", key = "#id")
     public void deleteById(Long id){
         produtoRepository.deleteById(id);
+    }
+
+
+    private ProdutoResponseDTO toProdutoResponseDTO(Produto produto) {
+        return new ProdutoResponseDTO(
+                produto.getId(),
+                produto.getNome(),
+                produto.getValor(),
+                produto.getMarca().getId()
+        );
     }
 
 }

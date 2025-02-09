@@ -1,12 +1,16 @@
 package com.example.mercado.resources;
 
 import com.example.mercado.entities.produto.Produto;
+import com.example.mercado.entities.produto.ProdutoCreateDTO;
+import com.example.mercado.entities.produto.ProdutoResponseDTO;
+import com.example.mercado.entities.produto.ProdutoUpdateDTO;
 import com.example.mercado.services.ProdutoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -21,15 +25,15 @@ public class ProdutoResource {
     @Autowired
     ProdutoService produtoService;
 
-    @Operation(summary = "insere produto", description = "Marca deve já estar registrada")
+    @Operation(summary = "Insere produto", description = "Marca deve já estar registrada")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Produto criado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Requisição inválida")
     })
     @PostMapping
     @SecurityRequirement(name = "Bearer Authentication")
-    public ResponseEntity<Produto> insereProduto(@RequestBody Produto produto){
-        Produto produtoAdicionado = produtoService.insert(produto);
+    public ResponseEntity<ProdutoResponseDTO> insereProduto(@RequestBody @Valid ProdutoCreateDTO produtoCreateDTO){
+        ProdutoResponseDTO produtoAdicionado = produtoService.insert(produtoCreateDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoAdicionado);
     }
 
@@ -37,7 +41,7 @@ public class ProdutoResource {
     @Operation(summary = "Busca paginada de produtos")
     @ApiResponse(responseCode = "200", description = "Retorna produtos de uma pagina")
     @GetMapping
-    public Page<Produto> buscaProdutosPaginados(
+    public Page<ProdutoResponseDTO> buscaProdutosPaginados(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size){
         return produtoService.getProdutosPaginados(page, size);
@@ -50,8 +54,8 @@ public class ProdutoResource {
             @ApiResponse(responseCode = "404", description = "Não existe produto com este ID")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Produto> retornaProdutoPeloId(@PathVariable Long id){
-        Produto produto = produtoService.findById(id);
+    public ResponseEntity<ProdutoResponseDTO> retornaProdutoPeloId(@PathVariable Long id){
+        ProdutoResponseDTO produto = produtoService.findById(id);
 
         return ResponseEntity.ok(produto);
 
@@ -65,8 +69,8 @@ public class ProdutoResource {
     })
     @PutMapping("/{id}")
     @SecurityRequirement(name = "Bearer Authentication")
-    public ResponseEntity<Produto> atualizaProduto(@PathVariable Long id, @RequestBody Produto produtoAtualizado){
-        Produto produto = produtoService.update(id, produtoAtualizado);
+    public ResponseEntity<ProdutoResponseDTO> atualizaProduto(@PathVariable Long id, @RequestBody ProdutoUpdateDTO produtoAtualizado){
+        ProdutoResponseDTO produto = produtoService.update(id, produtoAtualizado);
 
         return ResponseEntity.ok(produto);
 

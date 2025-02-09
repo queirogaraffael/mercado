@@ -22,8 +22,7 @@ public class Produto implements Serializable {
     private Long id;
 
     private String nome;
-    private String valor;
-
+    private Double valor;
 
     @ManyToOne
     @JoinColumn(name = "marca_id")

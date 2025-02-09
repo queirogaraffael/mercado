@@ -25,6 +25,7 @@ public class Marca implements Serializable {
     @EqualsAndHashCode.Include
     private Long id;
 
+    @Column(unique = true)
     private String nome;
 
     @OneToMany(mappedBy = "marca")
