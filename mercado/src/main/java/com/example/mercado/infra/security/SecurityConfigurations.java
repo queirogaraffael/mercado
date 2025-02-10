@@ -32,9 +32,12 @@ public class SecurityConfigurations {
 
                         .requestMatchers(HttpMethod.GET, "/produtos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/produtos/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/produtos/nome/contendo/**").permitAll()
 
                         .requestMatchers(HttpMethod.GET, "/marcas").permitAll()
                         .requestMatchers(HttpMethod.GET, "/marcas/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/marcas/nome/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/marcas/nome/contendo/**").permitAll()
 
                         // Acesso restrito por papel
                         .requestMatchers(HttpMethod.POST, "/produtos").hasRole("ADMIN")

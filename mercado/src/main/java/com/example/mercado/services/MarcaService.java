@@ -1,13 +1,9 @@
 package com.example.mercado.services;
 
-import com.example.mercado.entities.marca.MarcaCreateDTO;
-import com.example.mercado.entities.marca.MarcaResponseDTO;
-import com.example.mercado.entities.marca.MarcaUpdateDTO;
+import com.example.mercado.entities.marca.*;
 import com.example.mercado.entities.produto.Produto;
-import com.example.mercado.entities.produto.ProdutoResponseDTO;
 import com.example.mercado.exceptions.ResourceNotFoundException;
 import com.example.mercado.repositories.MarcaRepository;
-import com.example.mercado.entities.marca.Marca;
 import com.example.mercado.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -29,7 +25,7 @@ public class MarcaService {
     ProdutoRepository produtoRepository;
 
     @Transactional
-    public MarcaResponseDTO adicionaMarca(MarcaCreateDTO marcaCreateDTO){
+    public MarcaResponseDTO adicionaMarca(MarcaCreateDTO marcaCreateDTO) {
         Marca marca = new Marca();
 
         marca.setNome(marcaCreateDTO.nome());
@@ -41,7 +37,7 @@ public class MarcaService {
 
 
     @Transactional(readOnly = true)
-    public Page<MarcaResponseDTO> getMarcasPaginadas(int page, int size){
+    public Page<MarcaResponseDTO> getMarcasPaginadas(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
 
         Page<Marca> marcaPage = marcaRepository.findAll(pageable);
@@ -52,25 +48,26 @@ public class MarcaService {
 
     @Transactional(readOnly = true)
     @Cacheable(value = "marcasCache", key = "#id")
-    public MarcaResponseDTO getMarcaById(Long id){
-        Marca marca = marcaRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Marca não encontrada"));
+    public MarcaResponseDTO getMarcaById(Long id) {
+        Marca marca = marcaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Marca não encontrada"));
 
         return toMarcaResponseDTO(marca);
     }
 
 
     @Transactional(readOnly = true)
-    public MarcaResponseDTO getMarcaByNome(String nome){
-        Marca marca = marcaRepository.findByNome(nome).orElseThrow(()-> new ResourceNotFoundException("Marca não encontrada "));
+    @Cacheable(value = "marcasCache", key = "#nome")
+    public MarcaResponseDTO getMarcaByNome(String nome) {
+        Marca marca = marcaRepository.findByNome(nome).orElseThrow(() -> new ResourceNotFoundException("Marca não encontrada "));
         return toMarcaResponseDTO(marca);
     }
 
 
     @Transactional(readOnly = true)
-    public Page<MarcaResponseDTO> getMarcaByNomeContaining(String nome, int page, int size){
+    public Page<MarcaResponseDTO> getMarcaByNomeContaining(String nome, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
 
-        Page<Marca> marcaPage = marcaRepository.findByNomeContaining(nome, pageable);
+        Page<MarcaProjection> marcaPage = marcaRepository.findByNomeContaining(nome, pageable);
 
         return marcaPage.map(marca -> new MarcaResponseDTO(marca.getId(), marca.getNome()));
     }
@@ -78,8 +75,8 @@ public class MarcaService {
 
     @Transactional
     @CachePut(value = "marcasCache", key = "#result.id")
-    public MarcaResponseDTO atualizaMarca(Long id, MarcaUpdateDTO marcaAtualizada){
-        Marca marca = marcaRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Marca não encontrada"));
+    public MarcaResponseDTO atualizaMarca(Long id, MarcaUpdateDTO marcaAtualizada) {
+        Marca marca = marcaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Marca não encontrada"));
 
         marca.setNome(marcaAtualizada.nome());
 
@@ -91,13 +88,13 @@ public class MarcaService {
 
     @Transactional
     @CacheEvict(value = "marcasCache", key = "#id")
-    public void deletaMarcaById(Long id){
-        Marca marca = marcaRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Marca não encontrada"));
+    public void deletaMarcaById(Long id) {
+        Marca marca = marcaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Marca não encontrada"));
 
-       for(Produto produto : marca.getProdutos()){
-           produto.setMarca(null);
-           produtoRepository.save(produto);
-       }
+        for (Produto produto : marca.getProdutos()) {
+            produto.setMarca(null);
+            produtoRepository.save(produto);
+        }
 
         marcaRepository.deleteById(id);
     }

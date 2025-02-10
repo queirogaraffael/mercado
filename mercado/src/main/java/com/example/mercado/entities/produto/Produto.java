@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
@@ -22,7 +23,7 @@ public class Produto implements Serializable {
     private Long id;
 
     private String nome;
-    private Double valor;
+    private BigDecimal valor;
 
     @ManyToOne
     @JoinColumn(name = "marca_id")

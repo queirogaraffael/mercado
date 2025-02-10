@@ -1,6 +1,7 @@
 package com.example.mercado.repositories;
 
 import com.example.mercado.entities.marca.Marca;
+import com.example.mercado.entities.marca.MarcaProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,5 +13,5 @@ import java.util.Optional;
 public interface MarcaRepository extends JpaRepository<Marca, Long> {
     Optional<Marca> findByNome(String nome);
 
-    Page<Marca> findByNomeContaining(String nome, Pageable pageable);
+    Page<MarcaProjection> findByNomeContaining(String nome, Pageable pageable);
 }

@@ -1,4 +1,6 @@
 package com.example.mercado.entities.produto;
 
-public record ProdutoUpdateDTO(String nome, Double valor, Long idMarca) {
+import java.math.BigDecimal;
+
+public record ProdutoUpdateDTO(String nome, BigDecimal valor, Long idMarca) {
 }
