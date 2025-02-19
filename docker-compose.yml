@@ -19,8 +19,8 @@ services:
 
   postgres:
     image: postgres:latest
-    ports:
-      - "5432:5432"
+    expose:
+      - "5432"
     environment:
       - POSTGRES_DB=mercado
       - POSTGRES_USER=postgres
@@ -32,8 +32,6 @@ services:
     image: redis:latest
     expose:
       - "6379"
-    ports:
-      - "6379:6379"
     command: redis-server --appendonly yes --bind 0.0.0.0
     volumes:
       - redis_data:/data

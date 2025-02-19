@@ -6,7 +6,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
 @EnableCaching
-public class  MercadoApplication {
+public class MercadoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MercadoApplication.class, args);
