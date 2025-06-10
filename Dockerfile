@@ -6,7 +6,7 @@ COPY mercado /app/mercado
 
 WORKDIR /app/mercado
 
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests 
 
 FROM eclipse-temurin:17-jre-alpine AS runtime
 

@@ -140,7 +140,7 @@
 		<profile>
 			<id>prod</id>
 			<properties>
-				<spring.profiles.active>prod</spring.profiles.active>
+				<spring.profilese.active>prod</spring.profilese.active>
 			</properties>
 		</profile>
 	</profiles>

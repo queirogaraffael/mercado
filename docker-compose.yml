@@ -16,7 +16,7 @@ services:
       - REDIS_PASSWORD=
       - CACHE_TTL=3600
       - API_SECURITY_TOKEN_SECRET=meu_segredo
-      - SPRING_PROFILES_ACTIVE:prod
+      - SPRING_PROFILES_ACTIVE=prod
     depends_on:
       - postgres
       - redis

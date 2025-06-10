@@ -1,51 +1,59 @@
 # Mercado API
-Este projeto é uma API para gerenciamento de produtos e marcas em um mercado. Utiliza o Spring Boot com Spring Data JPA, caching com Caffeine, e está configurado para ser executado em contêineres Docker com PostgreSQL como banco de dados.
 
-## Estrutura do Projeto
-### Configurações
-* CacheCaffeineConfig: Configuração para o cache Caffeine, utilizando especificações fornecidas através de variáveis de ambiente.
-* SwaggerConfig: Configuração para Swagger, disponível apenas no perfil dev, que define a documentação da API.
+API para gerenciamento de marcas, produtos e usuários de um mercado. Desenvolvida em **Spring Boot**, com **Redis** para cache e **Spring Security** para autenticação.
 
-### Entidades
-* Marca: Entidade que representa uma marca de produtos.
-* Produto: Entidade que representa um produto, associado a uma marca.
+## 🏗️ Estrutura
 
-### Repositórios
-* MarcaRepository: Interface de repositório para a entidade Marca. Estende JpaRepository para fornecer operações CRUD e consultas básicas.
-* ProdutoRepository: Interface de repositório para a entidade Produto. Também estende JpaRepository, oferecendo suporte a operações CRUD e consultas básicas.
+* **Configurações**: Redis, Swagger (disponível apenas no perfil `dev`).
+* **Entidades**: Marca, Produto, User.
+* **Segurança**: JWT via Spring Security.
+* **Repositórios**: CRUD de entidades.
+* **Recursos**: Endpoints para autenticação e gerenciamento.
 
-### Exceções
-* CustomExceptionHandler: Manipulador global de exceções, que lida com ResourceNotFoundException e exceções gerais.
-* ResourceNotFoundException: Exceção personalizada para quando um recurso não é encontrado.
+## 🔧 Perfis de Aplicação
 
-### Recursos
-* MarcaResource: Endpoint para operações CRUD em marcas, incluindo busca paginada de marcas.
-* ProdutoResource: Endpoint para operações CRUD em produtos, incluindo busca paginada de produtos.
+* `dev`: Desenvolvimento (Swagger habilitado).
+* `prod`: Produção.
+* `test`: Testes.
 
-### Serviços
-* MarcaService: Serviço para manipulação de marcas com suporte a cache.
-* ProdutoService: Serviço para manipulação de produtos com suporte a cache.
+Definido em `application.properties` e complementado pelos arquivos de perfil.
 
-## Como Executar
-### 1. Construir e Rodar os Contêineres:
-Navegue até a pasta raiz do projeto e execute o comando:
-```
-    docker-compose up
-```
+## 🗃️ Dependências
 
-Note que, quando executado em um contêiner, o Swagger não estará disponível.
+* **Spring Boot Starter Web**
+* **Spring Boot Starter Data JPA**
+* **Spring Boot Starter Security**
+* **Spring Boot Starter Validation**
+* **Spring Boot Starter Cache**
+* **Spring Boot Starter Test**
+* **Spring Data Redis**
+* **JWT (jjwt)**
+* **Swagger (springdoc-openapi)**
+* **PostgreSQL Driver**
 
-### 2. Acessar a API:
-* API de Marca: http://localhost:8080/marcas
-* API de Produto: http://localhost:8080/produtos
+## 🚀 Como Executar
 
-Documentação Swagger estará disponível apenas no ambiente de desenvolvimento local, não estando acessível quando o projeto é executado via contêiner.
+1. Suba os contêineres:
 
-## Variáveis de Ambiente
-* SPRING_DATASOURCE_URL: URL de conexão com o banco de dados PostgreSQL.
-* SPRING_DATASOURCE_USERNAME: Nome de usuário para o banco de dados.
-* SPRING_DATASOURCE_PASSWORD: Senha para o banco de dados.
-* CACHE_CAFFEINE_SPEC: Configuração do cache Caffeine.
+   ```bash
+   docker-compose up
+   ```
 
-## Contribuição
-Sinta-se à vontade para contribuir com melhorias ou correções. Para começar, clone o repositório e crie uma branch para suas alterações.
+2. Endpoints principais:
+
+   * `http://localhost:8080/login` – Autenticação
+   * `http://localhost:8080/marcas`
+   * `http://localhost:8080/produtos`
+   * `http://localhost:8080/users`
+
+> 📌 O Swagger está disponível apenas em ambiente local (`dev`).
+
+## ⚙️ Variáveis de Ambiente
+
+* `SPRING_PROFILES_ACTIVE`
+* `SPRING_DATASOURCE_URL`, `USERNAME`, `PASSWORD`
+* `REDIS_HOST`, `REDIS_PORT`
+
+## 🤝 Contribuição
+
+Clone o repositório, crie uma branch para suas alterações e envie um pull request!
