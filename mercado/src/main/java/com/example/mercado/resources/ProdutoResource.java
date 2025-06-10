@@ -1,7 +1,5 @@
 package com.example.mercado.resources;
 
-import com.example.mercado.entities.marca.MarcaResponseDTO;
-import com.example.mercado.entities.produto.Produto;
 import com.example.mercado.entities.produto.ProdutoCreateDTO;
 import com.example.mercado.entities.produto.ProdutoResponseDTO;
 import com.example.mercado.entities.produto.ProdutoUpdateDTO;
@@ -16,11 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "3. Produtos", description = "Gerenciamento de produtos")
 @RestController
 @RequestMapping("/produtos")
+@EnableMethodSecurity
 public class ProdutoResource {
 
     @Autowired
@@ -32,6 +33,7 @@ public class ProdutoResource {
             @ApiResponse(responseCode = "400", description = "Requisição inválida")
     })
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<ProdutoResponseDTO> insereProduto(@RequestBody @Valid ProdutoCreateDTO produtoCreateDTO){
         ProdutoResponseDTO produtoAdicionado = produtoService.insert(produtoCreateDTO);
@@ -80,6 +82,7 @@ public class ProdutoResource {
             @ApiResponse(responseCode = "404", description = "Produto com ID não encontrado.")
     })
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<ProdutoResponseDTO> atualizaProduto(@PathVariable Long id, @RequestBody ProdutoUpdateDTO produtoAtualizado){
         ProdutoResponseDTO produto = produtoService.update(id, produtoAtualizado);
@@ -92,6 +95,7 @@ public class ProdutoResource {
     @Operation(summary = "Deleta produto pelo id")
     @ApiResponse(responseCode = "204", description = "Produto deletado com sucesso")
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Void> deletarProdutoPeloId(@PathVariable Long id){
         produtoService.deleteById(id);

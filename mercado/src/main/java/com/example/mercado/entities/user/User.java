@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Table(name = "users")
 @Entity(name = "users")
@@ -22,14 +23,18 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
+
     @Column(unique = true)
-    private String login;
+    private String username;
+
     private String password;
+
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    public User(String login, String password, UserRole role) {
-        this.login = login;
+    public User(String username, String password, UserRole role) {
+        this.username = username;
         this.password = password;
         this.role = role;
     }
@@ -43,7 +48,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return username;
     }
 
     @Override

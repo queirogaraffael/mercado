@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   app:
     build:
@@ -13,6 +15,8 @@ services:
       - REDIS_PORT=6379
       - REDIS_PASSWORD=
       - CACHE_TTL=3600
+      - API_SECURITY_TOKEN_SECRET=meu_segredo
+      - SPRING_PROFILES_ACTIVE:prod
     depends_on:
       - postgres
       - redis
@@ -32,7 +36,6 @@ services:
     image: redis:latest
     expose:
       - "6379"
-    command: redis-server --appendonly yes --bind 0.0.0.0
     volumes:
       - redis_data:/data
 

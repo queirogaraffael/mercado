@@ -1,4 +1,4 @@
 package com.example.mercado.entities.user;
 
-public record RegisterDTO(String login, String password, UserRole role) {
+public record RegisterDTO(String username, String password, UserRole role) {
 }

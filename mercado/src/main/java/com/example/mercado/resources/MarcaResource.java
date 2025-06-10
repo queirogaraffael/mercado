@@ -13,11 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "4. Marcas", description = "Gerenciamento de marcas")
 @RestController
 @RequestMapping("/marcas")
+@EnableMethodSecurity
 public class MarcaResource {
 
     @Autowired
@@ -29,6 +32,7 @@ public class MarcaResource {
             @ApiResponse(responseCode = "201", description = "Marca criada com sucesso"),
             @ApiResponse(responseCode = "400", description = "Requisição inválida")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<MarcaResponseDTO> criaMarca(@RequestBody MarcaCreateDTO marcaCreateDTO){
@@ -84,6 +88,7 @@ public class MarcaResource {
             @ApiResponse(responseCode = "200", description = "Marca atualizado com sucesso."),
             @ApiResponse(responseCode = "404", description = "Marca com ID não encontrado.")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<MarcaResponseDTO> atualizaMarca(@PathVariable Long id, @RequestBody MarcaUpdateDTO marca){
@@ -94,6 +99,7 @@ public class MarcaResource {
 
     @Operation(summary = "Deleta marca pelo id", description = "Se deletar a marca, os produtos ficarão com marca nula")
     @ApiResponse(responseCode = "204", description = "Marca deletada com sucesso")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Void> deletaMarcaById(@PathVariable Long id){

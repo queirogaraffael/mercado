@@ -4,6 +4,7 @@ import com.example.mercado.entities.user.AuthenticationDTO;
 import com.example.mercado.entities.user.LoginResponseDTO;
 import com.example.mercado.entities.user.User;
 import com.example.mercado.infra.security.TokenService;
+import com.example.mercado.services.LoginService;
 import com.example.mercado.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -24,23 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginResource {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private TokenService tokenService;
+    private LoginService loginService;
 
     @Operation(summary = "Autenticar usuário", description = "Gera token JWT para autenticação.")
     @PostMapping()
-    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
-        var auth = this.authenticationManager.authenticate(usernamePassword);
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthenticationDTO data) {
 
-        var token = tokenService.generateToken((User) auth.getPrincipal());
-
-        return ResponseEntity.ok(new LoginResponseDTO(token));
+        LoginResponseDTO response = loginService.login(data);
+        return ResponseEntity.ok(response);
     }
 
 }
