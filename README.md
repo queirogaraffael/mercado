@@ -2,7 +2,7 @@
 
 API para gerenciamento de marcas, produtos e usuários de um mercado. Desenvolvida em **Spring Boot**, com **Redis** para cache e **Spring Security** para autenticação.
 
-## 🏗️ Estrutura
+## Estrutura
 
 * **Configurações**: Redis, Swagger (disponível apenas no perfil `dev`).
 * **Entidades**: Marca, Produto, User.
@@ -10,7 +10,7 @@ API para gerenciamento de marcas, produtos e usuários de um mercado. Desenvolvi
 * **Repositórios**: CRUD de entidades.
 * **Recursos**: Endpoints para autenticação e gerenciamento.
 
-## 🔧 Perfis de Aplicação
+## Perfis de Aplicação
 
 * `dev`: Desenvolvimento (Swagger habilitado).
 * `prod`: Produção.
@@ -18,7 +18,7 @@ API para gerenciamento de marcas, produtos e usuários de um mercado. Desenvolvi
 
 Definido em `application.properties` e complementado pelos arquivos de perfil.
 
-## 🗃️ Dependências
+## Dependências
 
 * **Spring Boot Starter Web**
 * **Spring Boot Starter Data JPA**
@@ -31,7 +31,7 @@ Definido em `application.properties` e complementado pelos arquivos de perfil.
 * **Swagger (springdoc-openapi)**
 * **PostgreSQL Driver**
 
-## 🚀 Como Executar
+## Como Executar
 
 1. Suba os contêineres:
 
@@ -46,9 +46,9 @@ Definido em `application.properties` e complementado pelos arquivos de perfil.
    * `http://localhost:8080/produtos`
    * `http://localhost:8080/users`
 
-> 📌 O Swagger está disponível apenas em ambiente local (`dev`).
+ O Swagger está disponível apenas em ambiente local (`dev`).
 
-## ⚙️ Variáveis de Ambiente
+## Variáveis de Ambiente
 
 * `SPRING_PROFILES_ACTIVE`
 * `SPRING_DATASOURCE_URL`, `USERNAME`, `PASSWORD`
