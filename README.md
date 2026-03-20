@@ -54,6 +54,6 @@ Definido em `application.properties` e complementado pelos arquivos de perfil.
 * `SPRING_DATASOURCE_URL`, `USERNAME`, `PASSWORD`
 * `REDIS_HOST`, `REDIS_PORT`
 
-## 🤝 Contribuição
+## Contribuição
 
 Clone o repositório, crie uma branch para suas alterações e envie um pull request!
